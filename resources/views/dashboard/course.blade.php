@@ -60,15 +60,9 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-floating">
-                                {{-- <input id="content" type="hidden" name="content">
-                                @error('content')
-                                <p class="text-danger">
-                                    {{ $message }}
-                                </p>
-                                @enderror
-                                <trix-editor input="content"></trix-editor> --}}
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="content" style="height: 100px"></textarea>
+                                    <input type="hidden" id="content" name="content">
+                                    <trix-editor input="content"></trix-editor>
                                     <label for="floatingTextarea2">Content</label>
                                 </div>
                             </div>

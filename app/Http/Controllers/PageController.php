@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -31,24 +31,39 @@ class PageController extends Controller
         # code...
         $data = Course::find($id);
 
-        return view('pages.course-detail', compact('data'));
+        if (Auth::check()) {
+            # code...
+            return view('pages.course-detail', compact('data'));
+        }
+
+        return view('signin')->with('info', 'You May Login First !');
     }
 
     public function HomeInstructor()
     {
         # code...
-        //$data = DB::table('users')->where('is_admin', '', '1');
+        
         return view('pages.instructor', [
-            "data" => User::where('users', '1')
+            "data" => User::select('name', 'special', 'desc')
+                            ->where('is_admin', '=', '1')
+                            ->get()
         ]);
     }
 
     public function instructor()
     {
         # code...
-        return view('dashboard.dashboar', [
-            "data" => Course::all()
-        ]);
+        
+        if (Auth::check()) {
+            # code...
+            return view('dashboard.dashboar', [
+                "data" => Course::all()
+            ]);
+        } else {
+            return redirect('/signin')
+                    ->with('error', 'You May Logged in as instructor !');
+        }
+        
     }
 
     public function profile()

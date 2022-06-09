@@ -17,7 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    @trixassets
+    <link rel="stylesheet" href="{{ asset('editor/trix.css') }}">
 </head>
 
 <body id="page-top">
@@ -44,5 +44,6 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('js/trix.js') }}"></script>
 </body>
 </html>

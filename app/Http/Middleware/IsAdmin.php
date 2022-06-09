@@ -19,8 +19,8 @@ class IsAdmin
         if (auth()->user()->is_admin == 1) {
             # code...
             return $next($request);
+        } else {
+            return redirect('/signin')->with('error', 'You have no instructor access !');
         }
-
-        return redirect('/signin')->with('error', 'You have no instructor access !');
     }
 }

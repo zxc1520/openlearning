@@ -26,9 +26,14 @@ Route::get('/about', function() {
     return view('pages.about');
 });
 
-Route::get('/courses', [PageController::class, 'courses']);
-Route::get('/courses/{id}', [PageController::class, 'CourseDetail']);
 
+// Courses Page
+Route::get('/courses', [PageController::class, 'courses'])->name('courses')->middleware('guest');
+Route::get('/courses/{id}', [PageController::class, 'CourseDetail'])
+    ->name('courses')
+    ->middleware('auth');
+
+// Instructor Page
 Route::get('/instructor', [PageController::class, 'HomeInstructor']);
 
 Route::get('/profile', [PageController::class, 'profile'])
@@ -43,9 +48,10 @@ Route::post('/change', [PageController::class, 'change']);
 Route::get('/signup', [SignupController::class, 'index'])->name('signup');
 Route::post('/signup', [SignupController::class, 'store']);
 
-Route::get('/signin', [SigninController::class, 'index'])->name('signin');
+Route::get('/signin', [SigninController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/signin', [SigninController::class, 'authenticate']);
 Route::post('/signout', [SigninController::class, 'signout']);
 
+// Course CRUD Route
 Route::resource('course', CourseController::class);
 

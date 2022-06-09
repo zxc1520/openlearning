@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -24,18 +23,19 @@ class CourseController extends Controller
             "category" => "required|min:8|max:255",
             "description" => "required|min:8",
             "requirements" => "required|min:8",
-            "content" => "required|min:8",
+            'content' => 'required'
         ]);
 
         if ($validate) {
             # code...
+            // dd('success !');
             Course::create($validate);
 
             return redirect('/dashboard')
                     ->with('toast_success', 'Data Recorded Successfully');
         } else {
             return back()
-                    ->with('error', 'Something went wrong !');
+                    ->with('toast_error', 'Something went wrong !');
         }
 
     }
