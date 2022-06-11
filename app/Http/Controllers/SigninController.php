@@ -40,7 +40,7 @@ class SigninController extends Controller
 
                 return redirect()
                         ->intended('/')
-                        ->with('success', 'Berhasil Login');
+                        ->with('toast_success', auth()->user()->name);
             }
         } else {
 

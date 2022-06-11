@@ -28,7 +28,7 @@ Route::get('/about', function() {
 
 
 // Courses Page
-Route::get('/courses', [PageController::class, 'courses'])->name('courses')->middleware('guest');
+Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/courses/{id}', [PageController::class, 'CourseDetail'])
     ->name('courses')
     ->middleware('auth');
