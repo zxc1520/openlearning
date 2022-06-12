@@ -26,6 +26,7 @@
 
                         <h3><a href="/courses/{{$d->id}}">{{ $d->title }}</a></h3>
                         <p>{{ $d->description }}</p>
+                        <input type="hidden" value="{{ $d->content }}">
                         <div class="trainer d-flex justify-content-between align-items-center">
                             <div class="trainer-profile d-flex align-items-center">
                                 <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">

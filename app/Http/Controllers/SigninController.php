@@ -26,11 +26,8 @@ class SigninController extends Controller
         $credentials = $request->validate($rules);
 
         if (Auth::attempt($credentials)) {
-            # code...
             if(auth()->user()->is_admin == 1) {
                 $request->session()->regenerateToken();
-
-                //Alert::success('Berhasil Login');
 
                 return redirect()
                         ->intended('/dashboard')

@@ -102,7 +102,7 @@
                                 @foreach ($data as $d)
                                 <tr>
                                     <td>{{ $d->title }}</td>
-                                    <td>{{ $d->user->name}} (You)</td>
+                                    <td>{{ $d->user->name}}</td>
                                     <td>{{ $d->description }}</td>
                                     <td>{{ $d->requirements }}</td>
                                     <td>{{ $d->content }}</td>

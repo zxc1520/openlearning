@@ -18,6 +18,12 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('editor/trix.css') }}">
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -45,5 +51,11 @@
     <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('js/trix.js') }}"></script>
+
+    <script>
+        // document.addEventListener('trix-file-accept', (e) => {
+        //     e.preventDefault();
+        // });
+    </script>
 </body>
 </html>

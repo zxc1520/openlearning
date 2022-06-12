@@ -20,22 +20,21 @@ class CourseController extends Controller
         $validate = $request->validate([
             "user_id" => "required",
             "title" => "required|min:8|max:255",
-            "category" => "required|min:8|max:255",
+            "category" => "required|max:255",
             "description" => "required|min:8",
-            "requirements" => "required|min:8",
-            'content' => 'required'
+            "requirements" => "required|max:255",
+            'content' => 'required|max:255'
         ]);
 
         if ($validate) {
             # code...
-            // dd('success !');
             Course::create($validate);
 
             return redirect('/dashboard')
                     ->with('toast_success', 'Data Recorded Successfully');
         } else {
             return back()
-                    ->with('toast_error', 'Something went wrong !');
+                    ->with('error', 'Something went wrong !');
         }
 
     }

@@ -57,7 +57,9 @@ class PageController extends Controller
         if (Auth::check()) {
             # code...
             return view('dashboard.dashboar', [
-                "data" => Course::all()
+                "data" => Course::select('*')
+                            ->where('user_id', '=', auth()->user()->id)
+                            ->get()
             ]);
         } else {
             return redirect('/signin')

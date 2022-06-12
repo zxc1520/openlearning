@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'index'])->name('home');
-Route::get('/dashboard', [PageController::class, 'instructor'])
+Route::get('/dashboard/', [PageController::class, 'instructor'])
     ->name('dashboard')
     ->middleware('is_admin');
 

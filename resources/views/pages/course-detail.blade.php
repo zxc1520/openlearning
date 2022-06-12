@@ -16,7 +16,7 @@
                 <img src="{{ asset('img/course-details.jpg') }}" class="img-fluid" alt="">
                 <h3>Et enim incidunt fuga tempora</h3>
                 <p>
-                    {{ $data->description }}
+                    {{ $data->content }}
                 </p>
             </div>
             <div class="col-lg-4">
