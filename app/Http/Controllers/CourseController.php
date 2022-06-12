@@ -23,7 +23,7 @@ class CourseController extends Controller
             "category" => "required|max:255",
             "description" => "required|min:8",
             "requirements" => "required|max:255",
-            'content' => 'required|max:255'
+            "content" => "required"
         ]);
 
         if ($validate) {
