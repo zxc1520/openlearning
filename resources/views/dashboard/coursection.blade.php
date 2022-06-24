@@ -35,33 +35,11 @@
 
                <!-- Page Heading -->
                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Section Dashboard</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                </div>
 
-               <!-- Content Row -->
-               <div class="row">
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                         <div class="card border-left-primary shadow h-100 py-2">
-                              <div class="card-body">
-                                   <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                  Hi ! Welcome </div>
-                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ auth()->user()->name }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-
-               <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+               <h1 class="h3 mb-2 text-gray-800">Your Course</h1>
                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                     For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
@@ -77,46 +55,32 @@
                                    <thead>
                                         <tr>
                                              <th>Title</th>
-                                             <th>Instructor</th>
                                              <th>Description</th>
-                                             <th>Requirement</th>
-                                             <th>Content</th>
-                                             <th>Like</th>
-                                             <th>Comment</th>
+                                             <th>Section Title</th>
+                                             <th>Section Description</th>
                                              <th>Action</th>
                                         </tr>
                                    </thead>
                                    <tfoot>
                                         <tr>
                                              <th>Title</th>
-                                             <th>Instructor</th>
                                              <th>Description</th>
-                                             <th>Requirement</th>
-                                             <th>Content</th>
-                                             <th>Like</th>
-                                             <th>Comment</th>
+                                             <th>Section Title</th>
+                                             <th>Section Description</th>
                                              <th>Action</th>
                                         </tr>
                                    </tfoot>
                                    <tbody>
                                         @foreach ($data as $d)
                                         <tr>
-                                             <td>{{ $d->title }}</td>
-                                             <td>{{ $d->user->name}}</td>
-                                             <td>{{ $d->description }}</td>
-                                             <td>{{ $d->requirements }}</td>
-                                             <td>{{ $d->content }}</td>
-                                             <td>{{ $d->likes }}</td>
-                                             <td>{{ $d->comments }}</td>
+                                             <td>{{ $d->course->title }}</td>
+                                             <td>{{ $d->sec_title}}</td>
+                                             <td>{{ $d->sec_desc }}</td>
                                              <td>
-                                                  <form action="/course/{{$d->id}}" method="POST">
-                                                       @csrf
-                                                       @method('delete')
-                                                       <button type="submit" class="btn btn-danger">Hapus</button>
-                                                  </form>
-                                                  &nbsp;
-                                                  <a href="/course/{{ $d->id }}" class="btn btn-warning">Edit</a>
-                                                  &nbsp;
+                                                  <x-embed url="{{ $d->sec_media }}" class="img-fluid" aspect-ratio="4:3" />
+                                             </td>
+                                             <td>
+                                                  <a href="/coursection/add/{{ $d->id }}">Add Section</a>
                                              </td>
                                         </tr>
                                         @endforeach
@@ -125,7 +89,7 @@
                               </table>
                          </div>
                          @else
-                         <h3>There is no course</h3>
+                         <h3>There is no available course</h3>
                          @endif
 
                     </div>
@@ -137,7 +101,4 @@
           @include('dashboard.partials.footer')
      </div>
 </div>
-
-@include('sweetalert::alert')
-
 @endsection

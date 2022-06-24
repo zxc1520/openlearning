@@ -38,16 +38,33 @@
      <!-- Custom scripts for all pages-->
      <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
-     <!-- Page level plugins -->
-     <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
+     {{-- <!-- Page level plugins -->
+     <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script> --}}
 
-     <!-- Page level custom scripts -->
+     {{-- <!-- Page level custom scripts -->
      <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
-     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script> --}}
      <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js
+     "></script> --}}
      <script>
+          // CKEditor
           $(document).ready(function() {
                $('.ckeditor').ckeditor()
+          })
+
+          $(document).ready(function() {
+               $('#button-addon2').on('click', function() {
+                    var tag = '';
+
+                    tag += '<div class="input-group mb-3" id="field"> <input type="text" name="requirements[]" class="form-control @error("requirements")is-invalid @enderror" aria-describedby="button-addon2"> <button class="btn btn-outline-danger" type="button" id="del">-</button> </div>';
+
+                    $('#field').append(tag);
+               })
+          })
+
+          $(document).on('click', '#del', function() {
+               $(this).closest('div').remove();
           })
 
      </script>

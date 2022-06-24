@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CoursectionController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\SignupController;
+use App\Models\CourseSection;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,7 @@ Route::get('/about', function() {
     return view('pages.about');
 });
 
+Route::get('/search', [PageController::class, 'search']);
 
 // Courses Page
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
@@ -55,3 +58,6 @@ Route::post('/signout', [SigninController::class, 'signout']);
 // Course CRUD Route
 Route::resource('course', CourseController::class);
 
+Route::get('/coursection', [PageController::class, 'CourseSection']);
+Route::get('/coursection/add/{id}', [PageController::class, 'CoursecAdd']);
+Route::post('/coursection/add', [PageController::class, 'CoursecAddSec']);

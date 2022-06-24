@@ -13,10 +13,12 @@
 
           <div class="row">
                <div class="col-lg-8">
-                    <iframe src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" frameborder="0"></iframe>
+
                     <img src="{{ asset('img/course-details.jpg') }}" class="img-fluid" alt="">
-                    <h3>Et enim incidunt fuga tempora</h3>
+                    <span class="badge bg-secondary">{{ $data->requirements }}</span>
+                    <h3>Et enim incidunt fuga tempora </h3>
                     <p>
+
                          {{ $data->content }}
                     </p>
                </div>
@@ -37,13 +39,46 @@
                          <p>{{ $data->category }}</p>
                     </div>
 
-                    <div class="course-info d-flex justify-content-between align-items-center">
-                         <h5>Schedule</h5>
-                         <p>5.00 pm - 7.00 pm</p>
-                    </div>
-
                </div>
           </div>
+
+     </div>
+</section>
+
+<section id="cource-details-tabs" class="cource-details-tabs">
+     <div class="container" data-aos="fade-up">
+
+          @foreach ($data2 as $data2)
+          <div class="row">
+               <div class="col-lg-3">
+                    <ul class="nav nav-tabs flex-column">
+
+                         <li class="nav-item">
+                              <a class="nav-link" data-bs-toggle="tab" href="#tab-{{ $data2->id }}">{{$data2->sec_title}}</a>
+                              <p>{{ $data2->sec_desc }}</p>
+                         </li>
+
+                    </ul>
+               </div>
+
+               <div class="col-lg-9 mt-4 mt-lg-0">
+
+                    <div class="tab-content">
+                         <div class="tab-pane active show" id="tab-">
+                              <div class="row">
+                                   <div class="col-lg-8 details order-2 order-lg-1">
+                                        <h3>{{ $data2->sec_title }}</h3>
+                                        <p class="fst-italic">{{ $data2->sec_desc }}</p>
+                                        <p>
+                                             <x-embed url="{{ $data2->sec_media }}" class="img-fluid" aspect-ratio="4:3" />
+                                        </p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          @endforeach
 
      </div>
 </section>
