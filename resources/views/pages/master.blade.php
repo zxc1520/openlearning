@@ -80,7 +80,7 @@
                             'search': value,
                         },
                          success:function (data) {
-                              $('.search-area').html(data)
+                              $('.row').html(data)
                         },
                         error:function() {
                             alert('there is some error')

@@ -38,7 +38,8 @@ class PageController extends Controller
             # code...
             return view('pages.course-detail', [
                 "data" => $data,
-                "data2" => CourseSection::all()
+                "data2" => CourseSection::select('*')
+                                            ->where('course_id', '=', $id)
             ]);
         }
 
@@ -50,47 +51,41 @@ class PageController extends Controller
         # code...
         if ($request->ajax()) {
             # code...
-            $data = DB::table('courses')
-                    ->where('id', 'LIKE', '%' . $request->search . '%')
+            $data = Course::where('id', 'LIKE', '%'. $request->search . '%')
+                    ->orWhere('user_id', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('title', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('category', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('description', 'LIKE', '%' . $request->search . '%')
                     ->get();
 
             $output = '';
-            if (count($data) > 0) {
-                # code...
-                foreach ($data as $d=>$val) {
+                $output .= '
+                <img src="{{ asset("img/course-1.jpg")}}" class="img-fluid" alt="...">
+                    <div class="course-content">
+                ';
+                foreach ($data as $d=>$v) {
                     # code...
-                    $output .= '
-                        <img src="{{ asset(`img/course-1.jpg`)}}" class="img-fluid" alt="...">
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>' .  $val->category . '</h4>
-                                <p class="price">FREE</p>
+                    $output .=
+                    '
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4>' . $v->category . '</h4>
+                            <p class="price">FREE</p>
+                        </div>
+                        <h3><a href="/courses/' . $v->id . '">'. $v->title . '</a></h3>
+                        <p>'. $v->description .'</p>
+                        <div class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                                <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                                <span>'. $v->user->name . '</span>
                             </div>
-
-                            <h3><a href="/courses/{{$d->id}}">'. $val->title . '</a></h3>
-                            <p>'. $val->description .'</p>
-                            <input type="hidden" value="{{ $d->content }}">
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                    <span>'. $val->user->name. '</span>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                    &nbsp;&nbsp;
-                                    <i class="bx bx-heart"></i>&nbsp;'. $val->likes .'
-                                </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                                <i class="bx bx-heart"></i>&nbsp;'. $v->likes .'
                             </div>
-                        </div>';
-
-                    // $output .= 'Key found !';
+                        </div>
+                    ';
                 }
+                $output .= '</div>';
 
-            } else {
-                $output = 'No Result Found !';
-            }
 
             return Response($output);
         }

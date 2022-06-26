@@ -9,13 +9,12 @@
 </div>
 
 <section id="trainers" class="trainers">
-      
-    <div class="container" data-aos="fade-up">
 
-        
+    <div class="container" data-aos="fade-up">
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            @foreach($data as $d)
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                @foreach($data as $d)
+
                 <div class="member">
                     <img src="{{ asset('img/trainers/trainer-1.jpg')}}" class="img-fluid" alt="">
                     <div class="member-content">
@@ -32,14 +31,14 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
 
+            </div>
+            @endforeach
         </div>
-        
+
 
     </div>
-    
+
 </section>
 
 @endsection

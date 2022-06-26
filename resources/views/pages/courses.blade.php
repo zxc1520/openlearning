@@ -12,14 +12,14 @@
 
         <form action="/search" method="GET">
             @csrf
-          <input class="form-control" type="text" id="search" name="search" placeholder="Search Anything" value="{{ csrf_token() }}" aria-label="Search">
+          <input class="form-control" type="text" id="search" name="search" placeholder="Search Anything" aria-label="Search">
         </form>
 
 
           @if(count($data))
           <div class="row" data-aos="zoom-in" data-aos-delay="100">
                 @foreach ($data as $d)
-               <div class="col-lg-4 col-md-6 d-flex align-items-stretch search-area">
+               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="course-item">
 
                          <img src="{{ asset('img/course-1.jpg')}}" class="img-fluid" alt="...">

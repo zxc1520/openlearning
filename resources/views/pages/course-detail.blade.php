@@ -48,8 +48,10 @@
 <section id="cource-details-tabs" class="cource-details-tabs">
      <div class="container" data-aos="fade-up">
 
-          @foreach ($data2 as $data2)
-          <div class="row">
+        @if (count($data2) > 0)
+        <div class="row">
+        @foreach ($data2 as $data2)
+
                <div class="col-lg-3">
                     <ul class="nav nav-tabs flex-column">
 
@@ -77,8 +79,14 @@
                          </div>
                     </div>
                </div>
-          </div>
+
           @endforeach
+          </div>
+        @else
+        <img src="{{ asset('img/404.jpg') }}" alt="" style="width: 20%;">
+        <h3>Oops, There is no course section</h3>
+        <p>Contact admin, for futher information</p>
+        @endif
 
      </div>
 </section>
